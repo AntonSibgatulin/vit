@@ -10,16 +10,19 @@ public class Buyer {
     @ManyToOne
     public TypeOfOwnerShip typeOfOwnerShip;
 
-    @Column(unique = true)
+    @Column(unique = true,length = 120)
     public String name;
 
     @ManyToOne
     public Bank bank;
 
-
+    @Column(length = 20)
     public String inn;
+    @Column(length = 20)
     public String kpp;
+    @Column(length = 20)
     public String rscore;
+    @Column(length = 20)
     public String kscore;
 
 

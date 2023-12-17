@@ -13,20 +13,26 @@ public class PaymentOrder {
     public Date date;
     public Integer sum;
 
-
+    @Column(length = 20)
     public String provider_inn;
+    @Column(length = 20)
     public String provider_kpp;
+    @Column(length = 20)
     public String provider_rscore;
+    @Column(length = 20)
     public String provider_kscore;
 
 
     @ManyToOne
     public Location provider_location;
 
-
+    @Column(length = 20)
     public String buyer_inn;
+    @Column(length = 20)
     public String buyer_kpp;
+    @Column(length = 20)
     public String buyer_rscore;
+    @Column(length = 20)
     public String buyer_kscore;
 
 
