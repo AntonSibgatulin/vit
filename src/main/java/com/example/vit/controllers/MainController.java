@@ -7,6 +7,7 @@ import com.example.vit.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -367,4 +368,56 @@ public class MainController {
         return check.getId() + "";
 
     }
+
+    @GetMapping("/diagram1")
+    public List<DataDto> getInformationForDiagram() {
+        List<Object[]> results = carRepository.getDiagram1();
+
+        List<DataDto> dataDtos = new ArrayList<>();
+
+        for (Object[] result : results) {
+            String confidantName = (String) result[0];
+            Long carCount = (Long) result[1];
+            var dataDto = new DataDto();
+            dataDto.name = confidantName;
+            dataDto.count = carCount;
+
+            dataDtos.add(dataDto);
+
+        }
+
+        return dataDtos;
+    }
+
+
+    @GetMapping("/view")
+    public List<ReportDto> report() {
+        // var list = carRepository.findCarsWithConfidants();
+        List<ReportDto> reportDtos = new ArrayList<>();
+/*
+        for (int i = 0; i < list.size(); i++) {
+            var report = new ReportDto();
+            report.car = (Car) list.get(i)[0];
+            report.confidant = (Confidant) list.get(i)[1];
+            report.act = (Act) list.get(i)[2];
+
+            reportDtos.add(report);
+        }
+
+
+ */
+
+        List<Confidant> confidant = confidantRepository.findAll();
+
+        for (int i = 0; i < confidant.size(); i++) {
+            var report = new ReportDto();
+            report.confidant = confidant.get(i);
+
+            reportDtos.add(report);
+        }
+
+        return reportDtos;
+    }
+
+
 }
